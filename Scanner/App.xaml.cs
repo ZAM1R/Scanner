@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Scanner.Interfaces;
+using Scanner.Services;
+using Scanner.ViewModels;
+using System;
 using System.Windows;
 
 namespace Scanner
@@ -13,5 +12,30 @@ namespace Scanner
     /// </summary>
     public partial class App : Application
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        public App()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+
+            services.AddScoped<IScanService, ScanService>();
+
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton(s => new MainWindow()
+            {
+                DataContext = s.GetRequiredService<MainViewModel>()
+            });
+
+            _serviceProvider = services.BuildServiceProvider();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
 }
