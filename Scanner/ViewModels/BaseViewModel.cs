@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Scanner.ViewModel
+namespace Scanner.ViewModels
 {
     public class BaseViewModel
     {
