@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Scanner"
-             StartupUri="MainWindow.xaml">
+             xmlns:viewModel="clr-namespace:Scanner.ViewModels">
     <Application.Resources>
         
         <Style x:Key="ButtonStyle" TargetType="Button">
@@ -18,8 +18,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="GridViewColumnHeaderStyle1"
-               TargetType="{x:Type GridViewColumnHeader}">
+        <Style TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
@@ -43,6 +42,18 @@
             <Setter Property="FontSize"
                     Value="14" />
         </Style>
-
+        
+        <Style TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected"
+                         Value="true">
+                    <Setter Property="Foreground"
+                            Value="Transparent" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    
     </Application.Resources>
 </Application>

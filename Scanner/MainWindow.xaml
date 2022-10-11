@@ -65,7 +65,7 @@
                             BorderThickness="1"
                             CornerRadius="8">
                         <TextBox TextWrapping="Wrap"
-                                 Text=""
+                                 Text="{Binding Ip}"
                                  BorderThickness="0"
                                  BorderBrush="Transparent"
                                  Foreground="#ecf0f1"
@@ -88,7 +88,7 @@
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Center">
                         <TextBox TextWrapping="Wrap"
-                                 Text=""
+                                 Text="{Binding StartPort}"
                                  BorderThickness="0"
                                  BorderBrush="Transparent"
                                  Foreground="#ecf0f1"
@@ -112,7 +112,7 @@
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Right">
                         <TextBox TextWrapping="Wrap"
-                                 Text=""
+                                 Text="{Binding EndPort}"
                                  BorderThickness="0"
                                  BorderBrush="Transparent"
                                  Foreground="#ecf0f1"
@@ -132,15 +132,15 @@
                             Cursor="Hand"
                             CornerRadius="8">
                         <Button Style="{StaticResource ButtonStyle}"
-                                VerticalAlignment="Center" 
-                                HorizontalAlignment="Center" 
-                                Foreground="Black" 
-                                FontSize="15" 
-                                FontWeight="Bold" 
-                                Content="Go" 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="Black"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Content="Go"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Click="StartScan"></Button>
+                                Command="{Binding StartScanCommand}"></Button>
                     </Border>
                 </DockPanel>
                 
@@ -159,11 +159,12 @@
                     <ListView Background="Transparent"
                               BorderThickness="0"
                               Name="lvUsers"
+                              ItemsSource="{Binding ScannedIpList}"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Top"
                               HorizontalContentAlignment="Center">
                         <ListView.View>
-                            <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
+                            <GridView>
                                 <GridViewColumn Header="Ip"
                                                 Width="150">
                                     <GridViewColumn.CellTemplate>
